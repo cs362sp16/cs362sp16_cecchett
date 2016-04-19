@@ -1,0 +1,21 @@
+refactor.txt - 4/18/16
+
+======== Overview ========
+
+The cardEffect function was refactored such that the handling of Council Room, Smithy, Village, and Steward cards is now handled in separate, external functions. Specifically, the following five functions were created (one for each card):
+* int cardEffectCouncilRoom(int handPos, int currentPlayer, struct gameState *state)
+* int cardEffectSmithy(int handPos, int currentPlayer, struct gameState *state)
+* int cardEffectVillage(int handPos, int currentPlayer, struct gameState *state)
+* int cardEffectSteward(int handPos, int currentPlayer, int choice1, int choice2, int choice3, struct gameState *state)
+* int cardEffectSalvager(int handPos, int currentPlayer, int choice1, struct gameState *state)
+
+As parameters, each function only requires the exact variables it uses (thus hiding the huge amount of unnecessary variables within the cardEffect function).
+
+
+======== Process ========
+
+To refactor the cardEffect function, my basic strategy was to:
+* copy and paste the code from the switch statement into a new function 
+* note which variables are required 
+* add them as parameters to the function 
+* call the function within cardEffect.
