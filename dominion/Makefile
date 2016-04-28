@@ -7,42 +7,66 @@ test: test-build
 	echo "" >> unittestresults.out
 	echo "TEST COVERAGE" >> unittestresults.out
 	gcov -f dominion.c | grep -A1 "whoseTurn" >> unittestresults.out
+
+	echo "" >> unittestresults.out
+	echo "-------------------------------------------" >> unittestresults.out
 	echo "" >> unittestresults.out
 
 	./unittest2 >> unittestresults.out
 	echo "" >> unittestresults.out
 	echo "TEST COVERAGE" >> unittestresults.out
 	gcov -f dominion.c | grep -A1 "handCard" >> unittestresults.out
+
+	echo "" >> unittestresults.out
+	echo "-------------------------------------------" >> unittestresults.out
 	echo "" >> unittestresults.out
 
 	./unittest3 >> unittestresults.out
 	echo "" >> unittestresults.out
 	echo "TEST COVERAGE" >> unittestresults.out
 	gcov -f dominion.c | grep -A1 "fullDeckCount" >> unittestresults.out
+
+	echo "" >> unittestresults.out
+	echo "-------------------------------------------" >> unittestresults.out
 	echo "" >> unittestresults.out
 
 	./unittest4 >> unittestresults.out
 	echo "" >> unittestresults.out
 	echo "TEST COVERAGE" >> unittestresults.out
 	gcov -f dominion.c | grep -A1 "updateCoins" >> unittestresults.out
+
+	echo "" >> unittestresults.out
+	echo "-------------------------------------------" >> unittestresults.out
 	echo "" >> unittestresults.out
 
 	./cardtest1 >> unittestresults.out
+
+	echo "" >> unittestresults.out
+	echo "-------------------------------------------" >> unittestresults.out
 	echo "" >> unittestresults.out
 
 	./cardtest2 >> unittestresults.out
+
+	echo "" >> unittestresults.out
+	echo "-------------------------------------------" >> unittestresults.out
 	echo "" >> unittestresults.out
 
 	./cardtest3 >> unittestresults.out
 	echo "" >> unittestresults.out
 	echo "TEST COVERAGE" >> unittestresults.out
 	gcov -f dominion.c | grep -A1 "cardEffectSmithy" >> unittestresults.out
+
+	echo "" >> unittestresults.out
+	echo "-------------------------------------------" >> unittestresults.out
 	echo "" >> unittestresults.out
 
 	./cardtest4 >> unittestresults.out
 	echo "" >> unittestresults.out
 	echo "TEST COVERAGE" >> unittestresults.out
 	gcov -f dominion.c | grep -A1 "cardEffectCouncilRoom" >> unittestresults.out
+
+	echo "" >> unittestresults.out
+	echo "-------------------------------------------" >> unittestresults.out
 	echo "" >> unittestresults.out
 
 	echo "OVERALL COVERAGE of dominion.c" >> unittestresults.out
