@@ -16,7 +16,7 @@ void assert(int val, char* message) {
 	} else {
 		passed++;
 	}
-	printf("   %s: %s\n", val ? "ASSERTION PASSED" : "ASSERTION FAILED", message);
+	printf("   %s: %s\n", val ? "+ ASSERTION PASSED" : "- ASSERTION FAILED", message);
 }
 
 void end() {

@@ -1,0 +1,28 @@
+========== DESCRIPTION OF UNIT TEST RESULTS ==========
+
+unittest1.c - whoseTurn
+* Overall, functions as expected, but lacks any sort of bounds or error state checking.
+
+unittest2.c - handCard
+* Overall, functions as expected, but lacks any sort of bounds or error state checking.
+
+unittest3.c - fullDeckCount
+* All unit tests pass
+
+unittest4.c - updateCoins
+* All unit tests pass
+
+cardtest1.c - Cutpurse
+* The 'coins' field is not being incremented. (Patched)
+* Otherwise, this cardEffect seems to function as expected.
+
+cardtest2.c - Sea Hag
+* This cardEffect functions _extremely_ poorly. It pretty much doesn't do anything that it's supposed to. 
+* It's not properly discarding the top deck card for players. (Patched)
+* It isn't properly adding a Curse if the player has two cards in their deck. (Patched)
+
+cardtest3.c - Smithy
+* All unit tests pass
+
+cardtest4.c - Council Room
+* All unit tests pass

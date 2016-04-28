@@ -10,7 +10,7 @@ int main() {
 	int k[10] = {smithy,adventurer,gardens,embargo,cutpurse,mine,ambassador,
 	       outpost,baron,sea_hag};
 
-  	int r = initializeGame(4, k, 5, &g);
+  	int r = initializeGame(3, k, 5, &g);
   	assert(r == 0, "Game initialized.");
 
   	// now we've got to mock some stuff...
@@ -35,9 +35,6 @@ int main() {
   	g.deck[2][1] = 100;
   	g.discardCount[2] = 0;
 
-  	// set player 3's deck to contain no cards
-  	g.deckCount[3] = 0;
-
   	playCard(0, -1, -1, -1, &g);
 
   	// test 1: ensure player wasn't affected
@@ -47,9 +44,6 @@ int main() {
   	assert(g.discard[1][g.discardCount[1] - 1] == 99, "Another player's top deck card was discarded. (One card in deck)");
 
   	assert(g.discard[2][g.discardCount[2] - 1] == 100, "Another player's top deck card was discarded. (Two cards in deck)");
-
-  	// test 3: ensure 0 deck count is handled
-  	assert(g.deckCount[3] > 0, "Another player's discards were shuffled to form deck. (No cards in deck)");
 
   	// test 4: ensure curse was added to deck
   	assert(g.deck[1][g.deckCount[1] - 1] == curse, "Another player's top deck card is now curse. (One card in deck)");

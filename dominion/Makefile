@@ -71,6 +71,7 @@ test: test-build
 
 	echo "OVERALL COVERAGE of dominion.c" >> unittestresults.out
 	gcov dominion.c | grep Lines >> unittestresults.out
+	echo "" >> unittestresults.out
 
 test-build: dominion.o test-lib.o
 	gcc -o unittest1 unittest1.c -g test-lib.o dominion.o rngs.o $(CFLAGS)
