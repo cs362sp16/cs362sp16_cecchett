@@ -18,7 +18,7 @@ cardtest1.c - Cutpurse
 
 cardtest2.c - Sea Hag
 * This cardEffect functions _extremely_ poorly. It pretty much doesn't do anything that it's supposed to. 
-* It's not properly discarding the top deck card for players. (Patched)
+* It isn't properly discarding the top deck card for players. (Patched)
 * It isn't properly adding a Curse if the player has two cards in their deck. (Patched)
 
 cardtest3.c - Smithy
