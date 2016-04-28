@@ -2,7 +2,8 @@ CFLAGS = -Wall -fpic -coverage -lm
 
 all: playdom player
 
-test: test-build
+unittestresults.out: test-build
+	# Execute unittest1 and print coverage of tested function
 	./unittest1 > unittestresults.out
 	echo "" >> unittestresults.out
 	echo "TEST COVERAGE" >> unittestresults.out
@@ -12,6 +13,7 @@ test: test-build
 	echo "-------------------------------------------" >> unittestresults.out
 	echo "" >> unittestresults.out
 
+	# Execute unittest2 and print coverage of tested function
 	./unittest2 >> unittestresults.out
 	echo "" >> unittestresults.out
 	echo "TEST COVERAGE" >> unittestresults.out
@@ -21,6 +23,7 @@ test: test-build
 	echo "-------------------------------------------" >> unittestresults.out
 	echo "" >> unittestresults.out
 
+	# Execute unittest3 and print coverage of tested function
 	./unittest3 >> unittestresults.out
 	echo "" >> unittestresults.out
 	echo "TEST COVERAGE" >> unittestresults.out
@@ -30,6 +33,7 @@ test: test-build
 	echo "-------------------------------------------" >> unittestresults.out
 	echo "" >> unittestresults.out
 
+	# Execute unittest4 and print coverage of tested function
 	./unittest4 >> unittestresults.out
 	echo "" >> unittestresults.out
 	echo "TEST COVERAGE" >> unittestresults.out
@@ -39,18 +43,21 @@ test: test-build
 	echo "-------------------------------------------" >> unittestresults.out
 	echo "" >> unittestresults.out
 
+	# Execute cardtest1 and print coverage of tested function
 	./cardtest1 >> unittestresults.out
 
 	echo "" >> unittestresults.out
 	echo "-------------------------------------------" >> unittestresults.out
 	echo "" >> unittestresults.out
 
+	# Execute cardtest2 and print coverage of tested function
 	./cardtest2 >> unittestresults.out
 
 	echo "" >> unittestresults.out
 	echo "-------------------------------------------" >> unittestresults.out
 	echo "" >> unittestresults.out
 
+	# Execute cardtest3 and print coverage of tested function
 	./cardtest3 >> unittestresults.out
 	echo "" >> unittestresults.out
 	echo "TEST COVERAGE" >> unittestresults.out
@@ -60,6 +67,7 @@ test: test-build
 	echo "-------------------------------------------" >> unittestresults.out
 	echo "" >> unittestresults.out
 
+	# Execute cardtest4 and print coverage of tested function
 	./cardtest4 >> unittestresults.out
 	echo "" >> unittestresults.out
 	echo "TEST COVERAGE" >> unittestresults.out
