@@ -34,3 +34,6 @@ cardtest3.c - Smithy
 
 cardtest4.c - Council Room
 * This unit test covers 100% of cardEffectCouncilRoom's lines (which is 11)
+
+Overall coverage of dominion.c (all tests combined)
+* Lines executed: 30.17% of 643
