@@ -44,17 +44,17 @@ int main() {
   	assert(g.deckCount[0] == 1 && g.deck[0][0] == 99, "Player's deck remains untouched.");
 
   	// test 2: ensure all other player's top deck card is discarded
-  	assert(g.discard[1][g.discardCount[1] - 1] == 99, "Player's top deck card was discarded. (One card in deck)");
+  	assert(g.discard[1][g.discardCount[1] - 1] == 99, "Another player's top deck card was discarded. (One card in deck)");
 
-  	assert(g.discard[2][g.discardCount[2] - 1] == 100, "Player's top deck card was discarded. (Two cards in deck)");
+  	assert(g.discard[2][g.discardCount[2] - 1] == 100, "Another player's top deck card was discarded. (Two cards in deck)");
 
   	// test 3: ensure 0 deck count is handled
-  	assert(g.deckCount[3] > 0, "Player's discards were shuffled to form deck. (No cards in deck)");
+  	assert(g.deckCount[3] > 0, "Another player's discards were shuffled to form deck. (No cards in deck)");
 
   	// test 4: ensure curse was added to deck
-  	assert(g.deck[1][g.deckCount[1] - 1] == curse, "Player's top deck card is now curse. (One card in deck)");
-  	
-  	assert(g.deck[2][g.deckCount[2] - 1] == curse, "Player's top deck card is now curse. (Two cards in deck)");
+  	assert(g.deck[1][g.deckCount[1] - 1] == curse, "Another player's top deck card is now curse. (One card in deck)");
+
+  	assert(g.deck[2][g.deckCount[2] - 1] == curse, "Another player's top deck card is now curse. (Two cards in deck)");
 
 	end();
 }
