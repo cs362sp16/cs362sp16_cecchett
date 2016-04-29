@@ -1,4 +1,4 @@
-CFLAGS = -Wall -fpic -coverage -lm
+CFLAGS = -std=c99 -Wall -fpic -coverage -lm
 
 all: playdom player
 
