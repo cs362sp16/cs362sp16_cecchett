@@ -48,6 +48,7 @@ Overall coverage of dominion.c (all tests combined)
 * Lines executed: 30.17% of 643
 
 
+
 ============= USAGE AND SAMPLE OUTPUT =============
 
 $ make clean unittestresults.out
