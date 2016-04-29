@@ -46,3 +46,107 @@ cardtest4.c - Council Room
 
 Overall coverage of dominion.c (all tests combined)
 * Lines executed: 30.17% of 643
+
+
+============= USAGE AND SAMPLE OUTPUT =============
+
+$ make clean unittestresults.out
+
+BEGINNING TEST of whoseTurn
+   + ASSERTION PASSED: Returns correct value in a good state. 
+   - ASSERTION FAILED: Identifies when the value has become corrupt/invalid. (Too large)
+   - ASSERTION FAILED: Identifies when the value has become corrupt/invalid. (Too small)
+TEST FAILED - result: 1/3
+
+TEST COVERAGE
+Function 'whoseTurn'
+Lines executed:100.00% of 1
+
+-------------------------------------------
+
+BEGINNING TEST of handCard
+   + ASSERTION PASSED: Returns correct value in a good state. 
+   - ASSERTION FAILED: Detects invalid game state. (Current player out of bounds)
+   - ASSERTION FAILED: Detects invalid card index. (Card position out of bounds)
+TEST FAILED - result: 1/3
+
+TEST COVERAGE
+Function 'handCard'
+Lines executed:100.00% of 2
+
+-------------------------------------------
+
+BEGINNING TEST of fullDeckCount
+   + ASSERTION PASSED: All cards are checked within deck/hand/discard.
+   + ASSERTION PASSED: Counts only the desired card.
+TEST SUCCESSFUL - result: 2/2
+
+TEST COVERAGE
+Function 'fullDeckCount'
+Lines executed:100.00% of 11
+
+-------------------------------------------
+
+BEGINNING TEST of updateCoins
+   + ASSERTION PASSED: Copper coins are counted.
+   + ASSERTION PASSED: Silver coins are counted.
+   + ASSERTION PASSED: Gold coins are counted.
+   + ASSERTION PASSED: Only cards within hand are counted.
+   + ASSERTION PASSED: Only cards for given player are counted.
+TEST SUCCESSFUL - result: 5/5
+
+TEST COVERAGE
+Function 'updateCoins'
+Lines executed:100.00% of 14
+
+-------------------------------------------
+
+BEGINNING TEST of cardEffect (Cutpurse)
+   + ASSERTION PASSED: Game initialized.
+   + ASSERTION PASSED: Coins incremented by 2.
+   + ASSERTION PASSED: Copper is removed from another player's hand. (Player had only copper)
+   + ASSERTION PASSED: Copper is removed from another player's hand. (Player had copper + another card)
+   + ASSERTION PASSED: A player without copper remains untouched.
+TEST SUCCESSFUL - result: 5/5
+
+-------------------------------------------
+
+BEGINNING TEST of cardEffect (Sea Hag)
+   + ASSERTION PASSED: Game initialized.
+   + ASSERTION PASSED: Player's deck remains untouched.
+   + ASSERTION PASSED: Another player's top deck card was discarded. (One card in deck)
+   + ASSERTION PASSED: Another player's top deck card was discarded. (Two cards in deck)
+   + ASSERTION PASSED: Another player's top deck card is now curse. (One card in deck)
+   + ASSERTION PASSED: Another player's top deck card is now curse. (Two cards in deck)
+TEST SUCCESSFUL - result: 6/6
+
+-------------------------------------------
+
+BEGINNING TEST of cardEffect (Smithy)
+   + ASSERTION PASSED: Game initialized.
+   + ASSERTION PASSED: Player draws three cards (hand count += 2, since Smithy is removed).
+   + ASSERTION PASSED: Player's smithy card is removed.
+TEST SUCCESSFUL - result: 3/3
+
+TEST COVERAGE
+Function 'cardEffectSmithy'
+Lines executed:100.00% of 5
+
+-------------------------------------------
+
+BEGINNING TEST of cardEffect (Council Room)
+   + ASSERTION PASSED: Game initialized.
+   + ASSERTION PASSED: Number of buys is increased by 1.
+   + ASSERTION PASSED: Player draws 4 cards.
+   + ASSERTION PASSED: Another player draws 1 card. (No cards in hand)
+   + ASSERTION PASSED: Another player draws 1 card. (One card in hand)
+TEST SUCCESSFUL - result: 5/5
+
+TEST COVERAGE
+Function 'cardEffectCouncilRoom'
+Lines executed:100.00% of 11
+
+-------------------------------------------
+
+OVERALL COVERAGE of dominion.c
+Lines executed:30.17% of 643
