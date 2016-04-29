@@ -3,7 +3,10 @@
 Overall, I would say the most challenging part of unit testing the dominion.c functions
 was coming up with test cases and mocked data to operate on. Sometimes it wasn't always
 obvious what a given function should do under certain circumstances, and so it took some
-thought to determien the expected behavior.
+thought to determine the expected behavior. Additionally, even though I have pretty high
+coverage of the functions under test, it doesn't necessarily even mean they are operating
+properly. It's nearly impossible to test them under every condition, which means they might
+only operate properly under certain assumptions.
 
 
 
@@ -11,15 +14,19 @@ thought to determien the expected behavior.
 
 unittest1.c - whoseTurn
 * This unit test covers 100% of whoseTurn's lines (which is 1)
+* This implies this function is pretty well covered by my unit test.
 
 unittest2.c - handCard
 * Thus unit test covers 100% of handCard's lines (which is 2)
+* This implies this function is pretty well covered by my unit test.
 
 unittest3.c - fullDeckCount
 * This unit test covers 100% of fullDeckCount's lines (which is 11)
+* This implies this function is pretty well covered by my unit test.
 
 unittest4.c - updateCoins
 * THis unit test covers 100 of updateCoins' lines (which is 14)
+* This implies this function is pretty well covered by my unit test.
 
 cardtest1.c - Cutpurse
 * Coverage is difficult to measure since this is not a separate function. However, it's 
@@ -31,9 +38,11 @@ cardtest2.c - Sea Hag
 
 cardtest3.c - Smithy
 * This unit test covers 100% of cardEffectSmithy's lines (which is 5)
+* This implies this function is pretty well covered by my unit test.
 
 cardtest4.c - Council Room
 * This unit test covers 100% of cardEffectCouncilRoom's lines (which is 11)
+* This implies this function is pretty well covered by my unit test.
 
 Overall coverage of dominion.c (all tests combined)
 * Lines executed: 30.17% of 643
