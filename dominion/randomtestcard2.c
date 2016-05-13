@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "dominion.h"
 
-#define TEST_COUNT 10000
+#define TEST_COUNT 100000
 
 void softassert(int val, char *message) {
 	if(!val) {

@@ -1,0 +1,28 @@
+====================================
+============= Coverage =============
+====================================
+
+For the Adventurer card, I had no trouble achieving complete line coverage. Just using a reasonable test run count will easily execute all lines.
+
+For my first card, Cutpurse, it isn't possible to achieve full line coverage. This is because there is dead code within the Cutpurse section of the
+ switch statement. It has an off-by-one error that prevents a specific clause from ever being executed, which the random test helped to expose. 
+ Static analysis is probably the best way to catch an error like this, but it's still pretty neat that the random test "found it" as well.
+
+For my second card, Council Room, I again had no trouble acheiving complete line coverage. The "cardEffectCouncilRoom" function doesn't have any 
+branches, which makes it particularly easy to test.
+
+So, in summary, two of my cards achieved full coverage. One of them takes essentially no time at all to achieve it (no branches), the other takes 
+less than 10 seconds to achieve it (a semi-common condition must be met).
+
+
+
+====================================
+===== Comparison to Unit Tests =====
+====================================
+
+I think it's difficult to determine which is "better" at finding flaws. 
+
+Unit tests tend to find more targetted flaws -- they look for specific possibile issues that I've determined are most likely to occur. On the 
+flip side, the random tester "thinks" of scenarios that I didn't, but also takes significantly longer to execute. In numbers alone, they had 
+equal coverage -- both had the same line and branch coverage. However, the random tester had higher coverage in the sense that it performed far 
+more executions/configurations, but they were also for the most part "unintelligent" executions, whereas all of the unit tests are "intelligent".
