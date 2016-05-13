@@ -111,10 +111,10 @@ randomtestadventurer.out: randomtest-build
 	gcov dominion.c
 	head -n 798 dominion.c.gcov | tail -n 24 >> randomtestadventurer.out
 
-randomtest-build: dominion.o
-	gcc -o randomtestcard1 randomtestcard1.c -g dominion.o rngs.o $(CFLAGS)
-	gcc -o randomtestcard2 randomtestcard2.c -g dominion.o rngs.o $(CFLAGS)
-	gcc -o randomtestadventurer randomtestadventurer.c -g dominion.o rngs.o $(CFLAGS)
+randomtest-build: dominion.o softassert.o
+	gcc -o randomtestcard1 randomtestcard1.c -g dominion.o rngs.o softassert.o $(CFLAGS)
+	gcc -o randomtestcard2 randomtestcard2.c -g dominion.o rngs.o softassert.o $(CFLAGS)
+	gcc -o randomtestadventurer randomtestadventurer.c -g dominion.o rngs.o softassert.o $(CFLAGS)
 
 test-build: dominion.o test-lib.o
 	gcc -o unittest1 unittest1.c -g test-lib.o dominion.o rngs.o $(CFLAGS)
@@ -129,6 +129,9 @@ test-build: dominion.o test-lib.o
 
 test-lib.o:
 	gcc -c test-lib.c -g $(CFLAGS)
+
+softassert.o:
+	gcc -c softassert.c -g $(CFLAGS)
 
 rngs.o: rngs.h rngs.c
 	gcc -c rngs.c -g  $(CFLAGS)

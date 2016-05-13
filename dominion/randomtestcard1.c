@@ -1,14 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "dominion.h"
+#include "softassert.h"
 
 #define TEST_COUNT 100000
-
-void softassert(int val, char *message) {
-	if(!val) {
-		printf("Assertion failed: %s\n", message);
-	}
-}
 
 int coins;
 int copperCount[MAX_PLAYERS];
