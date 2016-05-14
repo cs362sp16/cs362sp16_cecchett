@@ -9,13 +9,17 @@ int buys;
 int handCounts[MAX_PLAYERS];
 
 void remember(struct gameState* g) {
+	// remember how many buys the player had
 	buys = g->numBuys;
+
+	// remember how many cards each player
 	for(int i = 0; i < g->numPlayers; i++) {
 		handCounts[i] = g->handCount[i];
 	}
 }
 
 void verifyBehavior(struct gameState* g) {
+	// check if numBuys was incremented
 	softassert(g->numBuys == buys + 1, "numBuys was not incremented by 1.");
 
 	// hand count should go up by 1 for all players except current, by 3 for current

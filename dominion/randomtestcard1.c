@@ -10,7 +10,10 @@ int copperCount[MAX_PLAYERS];
 int handCount[MAX_PLAYERS];
 
 void remember(struct gameState* g) {
+	// remember how many coins we had beforehand
 	coins = g->coins;
+
+	// remember how many cards and copper are in each player's hand (other than card player)
 	for(int i = 0; i < g->numPlayers; i++) {
 		copperCount[i] = 0;
 		handCount[i] = g->handCount[i];
@@ -25,8 +28,10 @@ void remember(struct gameState* g) {
 }
 
 void verifyBehavior(struct gameState* g) {
+	// make sure 2 coins were added
 	softassert(g->coins == coins + 2, "Coins wasn't incrememnted by 2.");
 
+	// make sure every player who had one lost a copper
 	int copperCountPost[MAX_PLAYERS];
 	for(int i = 0; i < g->numPlayers; i++) {
 		copperCountPost[i] = 0;
@@ -38,10 +43,12 @@ void verifyBehavior(struct gameState* g) {
 			}
 		}
 
+		// should have had a copper removed
 		if(copperCount[i] > 0) {
 			softassert(copperCountPost[i] == copperCount[i] - 1, "A player was not deducted a copper.");
 		}
 
+		// make sure only that copper was removed, or no cards at all
 		softassert(copperCount[i] == 0 ? (g->handCount[i] == handCount[i]) : (g->handCount[i] == handCount[i] - 1), "Hand count was not correct.");
 	}
 }
