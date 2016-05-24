@@ -51,7 +51,7 @@ subprocess.call('mv testdominion.c.orig testdominion.c', shell=True, stdout=null
 print ''
 
 filepath = sys.argv[1] + '/diffdominion.out'
-diffdominion = open(filepath, 'w');
+diffdominion = open(filepath, 'w+');
 print 'Creating diff file @', filepath
 subprocess.call('diff ' + sys.argv[1] + '/testdominion.out ' + sys.argv[2] + '/testdominion.out', stdout=diffdominion, stderr=diffdominion, shell=True);
 
