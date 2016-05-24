@@ -1,0 +1,15 @@
+================ Comparison ================
+
+I used my diffdominion.py (which runs my testdominion) against both my own
+and another random student's version of dominion.c. For the seed of 42, we both
+produced the same output. For the seed of 30, however, the test failed. The diff
+file makes it difficult to tell exactly what happened here. It indicates that at
+a certain point, the two implementations "diverge", with one playing an action
+card and one playing a treasure card. This should never be the case if two hands
+are identical, which leads me to believe this must be the result of a differing
+hand (card effect? bug? who knows).
+
+
+
+================= Coverage =================
+

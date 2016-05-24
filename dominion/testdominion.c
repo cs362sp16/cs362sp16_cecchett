@@ -302,6 +302,16 @@ int randomChoices(int cardIndex, int *choices, struct gameState *g) {
 	return 0;
 }
 
+void printState(struct gameState *g) {
+	printf("test: Game state");
+	for(int i = 0; i < g->numPlayers; i++) {
+		printf("  test: Deck counts for player %d: %d %d %d\n", i + 1, g->handCount[i], g->deckCount[i], g->discardCount[i]);
+	}
+	for(int i = 0; i <= treasure_map; i++) {
+		printf("  test: Supply could for %d: %d", i, g->supplyCount[i]);
+	}
+}
+
 int main(int argc, char *argv[]) {
 	if(argc != 2) {
 		printf("Syntax: ./testdominion <random seed>\n");
@@ -376,6 +386,8 @@ int main(int argc, char *argv[]) {
 
 			printf("test: Ending turn\n");
 			endTurn(&g);
+
+			printState(&g);
 		}
 		printf("test: Game is over\n");
 
