@@ -303,7 +303,7 @@ int randomChoices(int cardIndex, int *choices, struct gameState *g) {
 }
 
 void printState(struct gameState *g) {
-	printf("test: Game state");
+	printf("test: Game state\n");
 	for(int i = 0; i < g->numPlayers; i++) {
 		printf("  test: Deck counts for player %d: %d %d %d\n", i + 1, g->handCount[i], g->deckCount[i], g->discardCount[i]);
 	}
