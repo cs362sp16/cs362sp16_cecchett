@@ -677,7 +677,7 @@ int cardEffectSmithy(int handPos, int currentPlayer, struct gameState *state)
     int i;
     
     //+3 Cards
-    for (i = 1; i <= 4; i++)
+    for (i = 1; i < 4; i++)
     {
         drawCard(currentPlayer, state);
     }
@@ -697,7 +697,7 @@ int cardEffectVillage(int handPos, int currentPlayer, struct gameState *state)
     state->numActions = state->numActions + 2;
     
     //discard played card from hand
-    discardCard(currentPlayer, handPos, state, 0);
+    discardCard(handPos, currentPlayer, state, 0);
     
     return 0;
 }
@@ -1089,6 +1089,8 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
                     state->numActions = state->numActions + 2;
                 }
             }
+
+            discardCard(handPos, currentPlayer, state, 0);          
             
             return 0;
             
@@ -1164,7 +1166,7 @@ int cardEffect(int card, int choice1, int choice2, int choice3, struct gameState
                             discardCard(j, i, state, 0);
                             break;
                         }
-                        if (j == state->handCount[i])
+                        if (j == state->handCount[i] - 1)
                         {
                             for (k = 0; k < state->handCount[i]; k++)
                             {
