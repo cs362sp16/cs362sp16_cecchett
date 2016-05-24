@@ -2,12 +2,17 @@
 #include <stdlib.h>
 #include "dominion.h"
 
+// Define function not listed in dominion.h to suppress compiler warnings
 int getCost(int card);
 
+/**
+ * Fills a deck with a random set of 10 unique cards (may not all be valid)
+ */
 void randomCards(int* deck) {
 	for(int i = 0; i < 10; i++) {
 		int randCard = rand() % (treasure_map + 1);
 
+		// Make sure card is unique
 		int deckAlreadyContains = 0;
 		for(int j = 0; j < i; j++) {
 			if(deck[j] == randCard) {
@@ -15,6 +20,8 @@ void randomCards(int* deck) {
 				break;
 			}
 		}
+
+		//If not, try again
 		if(deckAlreadyContains) {
 			i--;
 			continue;
@@ -24,16 +31,22 @@ void randomCards(int* deck) {
 	}
 }
 
+/**
+ * Finds a random card that the player is able to purchase (supply > 0 and coins >= cost)
+ * @return the index in the supply array (i.e. the card's value)
+ */
 int randomAffordableCard(struct gameState *g) {
 	int affordableCards[treasure_map + 1];
 	int affordableCardsCount = 0;
 
 	for(int i = 0; i <= treasure_map; i++) {
+		// If card is affordable and supply > 0, add it to array
 		if(g->supplyCount[i] > 0 && getCost(i) <= g->coins) {
 			affordableCards[affordableCardsCount++] = i;
 		}
 	}
 
+	// Couldn't find any cards to buy
 	if(affordableCardsCount == 0) {
 		return -1;
 	}
@@ -42,17 +55,24 @@ int randomAffordableCard(struct gameState *g) {
 	return affordableCards[randCard];
 }
 
+/**
+ * Finds a random action card in the player's hand. Ignores all cards whose index in
+ * the player's hand is contained within the ignore array.
+ * @return the index in the player's hand of an action card
+ */
 int randomActionCard(struct gameState *g, int* ignore, int ignorec) {
 	int playableCards[numHandCards(g)];
 	int playableCardsCount = 0;
 
 	for(int i = 0; i < numHandCards(g); i++) {
 		if(handCard(i, g) >= adventurer) {
+			// Check if we're supposed to ignore this one
 			int ignoreCard = 0;
 			for(int j = 0; j < ignorec; j++)
 				if(ignore[j] == i)
 					ignoreCard = 1;
 
+			// If not, add it to playable cards array
 			if(!ignoreCard) {
 				printf("Card %d is playable, it's %d\n", i, handCard(i, g));
 				playableCards[playableCardsCount++] = i;
@@ -60,6 +80,7 @@ int randomActionCard(struct gameState *g, int* ignore, int ignorec) {
 		}
 	}
 
+	// Couldn't find a card to play
 	if(playableCardsCount == 0) {
 		return -1;
 	}
@@ -68,6 +89,11 @@ int randomActionCard(struct gameState *g, int* ignore, int ignorec) {
 	return playableCards[randCard];
 }
 
+/**
+ * Given that the player is about to play card at cardIndex, this function
+ * will attempt to fill the choices array with 3 valid choices.
+ * @return 0 if successful, -1 if valid choices are not found
+ */
 int randomChoices(int cardIndex, int *choices, struct gameState *g) {
 	int card = handCard(cardIndex, g);
 	switch(card) {
@@ -282,70 +308,83 @@ int main(int argc, char *argv[]) {
 		return -1;
 	}
 
+	// Set random seed from arguments
 	int seed = atoi(argv[1]);
 	srand(seed);
 
 	for(int i = 0; i < 20; i++) {
+		// Get random kingdom cards
 		int kingdomCards[10];
 		randomCards(kingdomCards);
 
+		// Set random amount of players 2-4
 		int randPlayers = rand() % 3 + 2;
 
+		// Initialize game
 		struct gameState g;
 		initializeGame(randPlayers, kingdomCards, rand(), &g);
 
+		// Play out the game
 		while(!isGameOver(&g)) {
-			printf("Game isn't over\n");
+			printf("test: Game isn't over\n");
 
+			// Hold array of cards we failed to play
 			int error[MAX_HAND];
 			int errorCount = 0;
+
+			// Possible to play a card
 			while(g.numActions > 0 && numHandCards(&g) > 0) {
 				int card = randomActionCard(&g, error, errorCount);
+
+				// No playable card found
 				if(card == -1)
 					break;
 
+				// Get random choices for the card. If none are found (not able to play card), continue
 				int choices[3];
 				if(randomChoices(card, choices, &g)) {
 					error[errorCount++] = card;
 					continue;
 				}
 
+				// Play the card, see if we were successful
 				if(playCard(card, choices[0], choices[1], choices[2], &g) > -1) {
-					printf("Playing action card %d\n", handCard(card, &g));
+					printf("test: Playing action card %d\n", handCard(card, &g));
 					errorCount = 0;
 				} else {
 					error[errorCount++] = card;
-					printf("Failed to play card at index %d (value: %d), ignoring.\n", card, handCard(card, &g));
+					printf("test: Failed to play card at index %d (value: %d), ignoring.\n", card, handCard(card, &g));
 				}
 			}
 
+			// Throw out random treasure cards -- 2/3 chance for each in hand (arbitrary)
 			for(int i = 0; i < numHandCards(&g); i++) {
-				if((handCard(i, &g) == copper || handCard(i, &g) == silver 
-					|| handCard(i, &g) == gold) && rand() % 3 < 2) {
-					printf("Playing money card\n");
+				if((handCard(i, &g) == copper || handCard(i, &g) == silver || handCard(i, &g) == gold) && rand() % 3 < 2) {
+					printf("test: Playing treasure card\n");
 					playCard(i, -1, -1, -1, &g);
 				}
 			}
 
+			// Buy random cards while we can
 			while(g.numBuys > 0) {
 				int card = randomAffordableCard(&g);
 				if(card == -1)
 					break;
-				printf("Buying something\n");
+				printf("test: Buying something\n");
 				buyCard(card, &g);
 			}
 
-			printf("Ending turn\n");
+			printf("test: Ending turn\n");
 			endTurn(&g);
 		}
-		printf("Game is over\n");
+		printf("test: Game is over\n");
 
 		int winners[MAX_PLAYERS];
 		getWinners(winners, &g);
 
 		printf("Results:\n");
 		for(int i = 0; i < g.numPlayers; i++) {
-			printf("  Score for player %d: %d. Winner? %d\n", i + 1, scoreFor(i, &g), winners[i]);
+			printf("  test: Score for player %d: %d. Winner? %d\n", i + 1, scoreFor(i, &g), winners[i]);
 		}
 	}
 	
