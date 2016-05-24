@@ -21,8 +21,8 @@ print ''
 
 print 'Building testdominion in both directories...'
 print '$ make clean testdominion'
-subprocess.call('make clean testdominion', shell=True, stdout=null, cwd=sys.argv[1]);
-subprocess.call('make clean testdominion', shell=True, stdout=null, cwd=sys.argv[2]);
+subprocess.call('make clean testdominion', shell=True, stdout=null, stderr=null, cwd=sys.argv[1]);
+subprocess.call('make clean testdominion', shell=True, stdout=null, stderr=null, cwd=sys.argv[2]);
 
 print ''
 
