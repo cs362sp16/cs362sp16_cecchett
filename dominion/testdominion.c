@@ -312,7 +312,7 @@ int main(int argc, char *argv[]) {
 	int seed = atoi(argv[1]);
 	srand(seed);
 
-	for(int i = 0; i < 20; i++) {
+	for(int i = 0; i < 1; i++) {
 		// Get random kingdom cards
 		int kingdomCards[10];
 		randomCards(kingdomCards);
