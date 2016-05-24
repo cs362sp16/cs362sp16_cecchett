@@ -57,4 +57,4 @@ subprocess.call('diff ' + sys.argv[1] + '/testdominion.out ' + sys.argv[2] + '/t
 
 print ''
 
-print 'TEST PASEED' if diffdominion.tell() == 0 else 'TEST FAILED'
+print 'TEST PASSED' if diffdominion.tell() == 0 else 'TEST FAILED'
