@@ -4,12 +4,30 @@ I used my diffdominion.py (which runs my testdominion) against both my own
 and another random student's version of dominion.c. For the seed of 42, we both
 produced the same output. For the seed of 30, however, the test failed. The diff
 file makes it difficult to tell exactly what happened here. It indicates that at
-a certain point, the two implementations "diverge", with one playing an action
-card and one playing a treasure card. This should never be the case if two hands
-are identical, which leads me to believe this must be the result of a differing
-hand (card effect? bug? who knows).
+a certain point, the two implementations "diverge", with one having a different
+deck count that the other. 
+
+Why did this happen? It's very hard to tell. You'd have to sort through these 
+massive amounts of output, see what card was played right before the diff begins,
+and then try and figure out why it caused a divergence.
+
+It's also worth noting that it was extremely easy to get the other implementation
+of dominion.c to hang. In this case, it's obvious that my implementation is at 
+least closer to correct, since I fixed a couple of cards that have possible infinite
+loops.
+
+This is not even close to the ideal case of differential testing for many reasons:
+first of all, we don't even know if either of these implementations are remotely
+close to correct. We have no "good" reference, which makes it difficult to draw
+any conclusions from comparing the two outputs.
 
 
 
 ================= Coverage =================
 
+Since the other dominion.c I tested against would frequently get stuck in infinite loops,
+it made it difficult to measure coverage for. Running it once often resulted in around 50%
+coverage.
+
+When I put my own dominion.c through a run of 20 testdominions, I ended up with around
+85% coverage (which I was quite pleased with!).
