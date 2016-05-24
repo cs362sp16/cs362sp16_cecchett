@@ -307,9 +307,11 @@ void printState(struct gameState *g) {
 	for(int i = 0; i < g->numPlayers; i++) {
 		printf("  test: Deck counts for player %d: %d %d %d\n", i + 1, g->handCount[i], g->deckCount[i], g->discardCount[i]);
 	}
+	printf("  test: Supply counts");
 	for(int i = 0; i <= treasure_map; i++) {
-		printf("  test: Supply could for %d: %d\n", i, g->supplyCount[i]);
+		printf(" %d", g->supplyCount[i]);
 	}
+	printf("\n");
 }
 
 int main(int argc, char *argv[]) {
