@@ -97,7 +97,7 @@ def create_report():
 			suspicion_string = ''
 			for i in range(0, int(suspicion * 100), 10):
 				suspicion_string += '#'
-			file.write(('%-10s ln ' + str(line) + ' executed when test failed ' + str(fail_dict[line]) + '/' + str(exec_count) + '. suspicion ' + '%4.4f.\n') % (suspicion_string, suspicion))
+			file.write(('%-10s ln ' + str(line) + ' test failed when executed ' + str(fail_dict[line]) + '/' + str(exec_count) + '. suspicion ' + '%4.4f.\n') % (suspicion_string, suspicion))
 
 def build_gcov_dict(dir):
 	total_dict = {}
