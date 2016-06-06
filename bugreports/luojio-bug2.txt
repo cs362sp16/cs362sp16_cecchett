@@ -1,0 +1,13 @@
+Name: Adventurer - segmentation fault
+
+Description: 
+	It appears that cardEffect is causing a segmentation fault when executing for
+	the adventurer card under certain conditions. The exact conditions are still
+	unclear to me, but below provides a way to consistently reproduce the issue.
+
+Tests to reproduce:
+	To reproduce, you can run my randomtestadventurer against your dominion.c using a
+	seed value of 42.
+	
+	$ make randomtest-build
+	$ ./randomtestadventurer 42

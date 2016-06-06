@@ -1,0 +1,13 @@
+Name: Cutpurse - coins not incremented
+
+Description: 
+	The cutpurse card effect should increment the user's "coins" attribute by 2.
+	It appears that in all cases this is not being updated, and is instead remaining
+	unchanged.
+
+Tests to reproduce:
+	To reproduce, you can run my randomcardtest1 against your dominion.c using a
+	seed value of 42.
+
+	$ make randomtest-build
+	$ ./randomtestcard1 42
