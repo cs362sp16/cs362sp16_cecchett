@@ -3,10 +3,10 @@
 When I started to unit test Sea Hag, it became immediately apparent that something 
 wasn't functioning correctly. 
 
-To debug the issue, I printed the user’s decks and discards (as well as the counts) 
+To debug the issue, I printed the users' decks and discards (as well as the counts) 
 before and after the card effect was applied. This made it infinitely more easy to see
- that the Sea Hag card effect was not working as expected (and what it was doing wrong). 
- The deck count was the most notable issue, because it shouldn’t be changing and it was.
+that the Sea Hag card effect was not working as expected (and what it was doing wrong). 
+The deck count was the most notable issue, because it shouldn’t be changing and it was.
 
 
 ======== Fixing the issue ========
@@ -51,8 +51,6 @@ for (i = 0; i < state->numPlayers; i++){
 
 We can simplify it a bit because deckCount never really needs to get changed-- we’re just 
 replacing the top card with a different card, why update it?
-
-
 
 
 ======= Agans' principles =======
