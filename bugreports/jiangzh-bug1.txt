@@ -1,5 +1,9 @@
 Name: Cutpurse - coins not incremented
 
+Severity: Moderate - only part of a card's affect is missing
+
+Priority: Moderate - doesn't break game state, just doesn't do what it's suppsoed to
+
 Description: 
 	The cutpurse card effect should increment the user's "coins" attribute by 2.
 	It appears that in all cases this is not being updated, and is instead remaining

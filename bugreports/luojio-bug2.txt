@@ -1,5 +1,9 @@
 Name: Adventurer - segmentation fault
 
+Severity: High - completely halts the program
+
+Priority: High - could prevent a user from completing a game
+
 Description: 
 	It appears that cardEffect is causing a segmentation fault when executing for
 	the adventurer card under certain conditions. The exact conditions are still

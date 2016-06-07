@@ -1,5 +1,9 @@
 Name: Sea Hag - cards not discarded, curse not added
 
+Severity: Moderate - a card isn't functioning, which will be encountered nearly every game
+
+Priority: High - playing a Sea Hag will break the game state
+
 Description: 
 	Sea Hag doesn't seem to be behaving as expected. According to my automated test, the
 	following 3 assertions are failing:
