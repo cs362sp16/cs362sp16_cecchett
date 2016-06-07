@@ -1,0 +1,66 @@
+====== Identifying the issue ======
+
+When I started to unit test Sea Hag, it became immediately apparent that something 
+wasn't functioning correctly. 
+
+To debug the issue, I printed the user’s decks and discards (as well as the counts) 
+before and after the card effect was applied. This made it infinitely more easy to see
+ that the Sea Hag card effect was not working as expected (and what it was doing wrong). 
+ The deck count was the most notable issue, because it shouldn’t be changing and it was.
+
+
+======== Fixing the issue ========
+
+This is the Sea Hag card effect before being fixed:
+
+--------
+
+for (i = 0; i < state->numPlayers; i++){
+	if (i != currentPlayer){
+		state->discard[i][state->discardCount[i]] = state->deck[i][state->deckCount[i]--];			    
+state->deckCount[i]--;
+		state->discardCount[i]++;
+		state->deck[i][state->deckCount[i]--] = curse;//Top card now a curse
+	}
+}
+
+-------
+
+What we can see already by just looking at it is that a) it’s a little bit overcomplicated 
+and b) it doesn’t make a whole lot of sense (decrement deckCount 3 times when it isn’t 
+supposed to change…?). 
+
+The Sea Hag card defines that the following should happen when it is played: every other 
+player discards their deck’s top card and replaces it with a curse.
+
+To fix the issue, I simply rewrote the handler: 
+
+---------
+
+for (i = 0; i < state->numPlayers; i++){
+	if (i != currentPlayer){
+		// move top card to discard
+		state->discard[i][state->discardCount[i]++] = state->deck[i][state->deckCount[i] - 1]; 	
+
+		//Top card now a curse
+		state->deck[i][state->deckCount[i] - 1] = curse; 
+	}
+}
+
+--------
+
+We can simplify it a bit because deckCount never really needs to get changed-- we’re just 
+replacing the top card with a different card, why update it?
+
+
+
+
+======= Agan’s principles =======
+
+I would say that I followed a couple of Agan’s principles in fixing Sea Hag. 
+
+First was “Rule #1: Understand the system.” The first thing I did when I realized the card 
+didn’t work properly was to look up exactly what the card is supposed to do.
+
+I also followed “Rule #2: Make it fail” to some degree. I had created a unit test for Sea Hag,
+which would result in a reliable way to see if it is working as expected.
