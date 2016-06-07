@@ -55,9 +55,9 @@ replacing the top card with a different card, why update it?
 
 
 
-======= Agan’s principles =======
+======= Agans' principles =======
 
-I would say that I followed a couple of Agan’s principles in fixing Sea Hag. 
+I would say that I followed a couple of Agans' principles in fixing Sea Hag. 
 
 First was “Rule #1: Understand the system.” The first thing I did when I realized the card 
 didn’t work properly was to look up exactly what the card is supposed to do.
